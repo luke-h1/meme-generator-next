@@ -25,3 +25,11 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.text-stroke-black {
+  -webkit-text-stroke: 2px #fff; /* text is black so outline of white */
+}
+
+.text-stroke-white {
+  -webkit-text-stroke: 2px #000; /* text is white so outline of black */
+}
