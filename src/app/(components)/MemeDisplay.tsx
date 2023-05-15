@@ -3,27 +3,11 @@
 import { Anton } from 'next/font/google';
 import Image from 'next/image';
 import { useElementSize } from 'usehooks-ts';
+import { MemeTemplate } from '../(data)/types';
 
 const anton = Anton({ subsets: ['latin'], weight: '400' });
 
-interface Props {
-  background: {
-    src: string;
-    width: number;
-    height: number;
-    alt: string;
-  };
-  textBlocks: {
-    id: string;
-    top: number;
-    left: number;
-    width: number;
-    height: number;
-    color: string;
-    fontSize: number;
-    text: string;
-  }[];
-}
+type Props = MemeTemplate;
 
 const MemeDisplay = ({ background, textBlocks }: Props) => {
   const [memeRef, { width }] = useElementSize();

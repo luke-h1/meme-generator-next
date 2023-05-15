@@ -1,29 +1,13 @@
 import MemeDisplay from '@frontend/app/(components)/MemeDisplay';
 
-const Home = () => {
+const Home = async () => {
+  const memeTemplates = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/meme-templates`,
+  ).then(res => res.json());
+
   return (
-    <main
-      className="max-w-[1200px] mx-auto">
-      <MemeDisplay
-        background={{
-          src: '/disaster-girl.jpg',
-          width: 1200,
-          height: 900,
-          alt: 'Disaster Girl',
-        }}
-        textBlocks={[
-          {
-            id: 'saying',
-            top: 750,
-            left: 100,
-            width: 1000,
-            height: 100,
-            fontSize: 100,
-            color: 'white',
-            text: 'Im gonna be rich',
-          },
-        ]}
-      />
+    <main className="max-w-[1200px] mx-auto">
+      <MemeDisplay {...memeTemplates[0]} />
     </main>
   );
 };
