@@ -21,3 +21,13 @@ export interface MemeTemplate {
   background: Background;
   textBlocks: TextBlock[];
 }
+
+export interface Dictionary<T> {
+  [key: string]: T;
+}
+
+export interface Meme {
+  id: string;
+  template: 'guy-looking' | 'drake' | 'disaster-girl';
+  values: Dictionary<string>;
+}

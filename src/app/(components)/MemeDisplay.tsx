@@ -3,13 +3,15 @@
 import { Anton } from 'next/font/google';
 import Image from 'next/image';
 import { useElementSize } from 'usehooks-ts';
-import { MemeTemplate } from '../(data)/types';
+import { Dictionary, MemeTemplate } from '../(data)/types';
 
 const anton = Anton({ subsets: ['latin'], weight: '400' });
 
-type Props = MemeTemplate;
+type Props = MemeTemplate & {
+  values: Dictionary<string>;
+};
 
-const MemeDisplay = ({ background, textBlocks }: Props) => {
+const MemeDisplay = ({ background, textBlocks, values }: Props) => {
   const [memeRef, { width }] = useElementSize();
 
   const ratio = width / background.width;
@@ -35,13 +37,13 @@ const MemeDisplay = ({ background, textBlocks }: Props) => {
             }}
           >
             <div
-              className={`${anton.className} text-center text-white text-stroke-white`}
+              className={`${anton.className} text-center text-${textBlock.color} text-stroke-${textBlock.outlineColor}`}
               style={{
                 fontSize: textBlock.fontSize * ratio,
                 lineHeight: '1.1',
               }}
             >
-              {textBlock.text}
+              {values?.[textBlock.id] ?? textBlock.text}
             </div>
           </div>
         ))}
